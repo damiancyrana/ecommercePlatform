@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class ProductGroup(models.Model):
@@ -7,14 +8,15 @@ class ProductGroup(models.Model):
 
     class Meta:
         ordering = ('label',)
-        verbose_name = 'product_group'
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
 
     def __str__(self):
         return self.label
 
 
 class Product(models.Model):
-    product_group = models.ForeignKey(ProductGroup, related_name='products', on_delete=models.CASCADE)
+    category = models.ForeignKey(ProductGroup, related_name='products', on_delete=models.CASCADE)
     label = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)
     image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
@@ -30,3 +32,6 @@ class Product(models.Model):
 
     def __str__(self):
         return self.label
+
+    def get_absolute_url(self):
+        return reverse('shop:product_detail', args=[self.id, self.slug])
