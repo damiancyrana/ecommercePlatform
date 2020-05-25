@@ -13,13 +13,13 @@ def payment_process(request):
 
     if request.method == 'POST':
         nonce = request.POST.get('payment_method_nonce', None)
-
-        result = gateway.transaction.sale({'amount': f'{cost:.2f}',
-                                           'payment_method_nonce': nonce,
-                                           'options': {
-                                               'submit_for_settlement': True
-                                           }
-                                           })
+        result = gateway.transaction.sale({
+            'amount': f'{cost:.2f}',
+            'payment_method_nonce': nonce,
+            'options': {
+                'submit_for_settlement': True
+            }
+        })
         if result.is_success:
             order.paid = True
             order.braintree_id = result.transaction.id
@@ -31,7 +31,10 @@ def payment_process(request):
     else:
         # generate token
         client_token = gateway.client_token.generate()
-        return render(request, 'payment/process.html', {'order': order, 'client_token': client_token})
+        return render(request,
+                      'payment/process.html',
+                      {'order': order,
+                       'client_token': client_token})
 
 
 def payment_done(request):
