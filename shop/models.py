@@ -14,6 +14,9 @@ class ProductGroup(models.Model):
     def __str__(self):
         return self.label
 
+    def get_absolute_url(self):
+        return reverse('shop:product_list_by_category', args=[self.slug])
+
 
 class Product(models.Model):
     category = models.ForeignKey(ProductGroup, related_name='products', on_delete=models.CASCADE)

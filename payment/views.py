@@ -9,14 +9,17 @@ gateway = braintree.BraintreeGateway(settings.BRAINTREE_CONF)
 def payment_process(request):
     order_id = request.session.get('order_id')
     order = get_object_or_404(Order, id=order_id)
+    cost = order.total_cost()
 
     if request.method == 'POST':
         nonce = request.POST.get('payment_method_nonce', None)
-        result = braintree.Transaction.sale({'amount': '{:.2f'.format(order.total_cost()),
-                                             'payment_method_nonce': nonce,
-                                             'options': {
-                                                 'submit_for_settlement': True
-                                             }})
+
+        result = gateway.transaction.sale({'amount': f'{cost:.2f}',
+                                           'payment_method_nonce': nonce,
+                                           'options': {
+                                               'submit_for_settlement': True
+                                           }
+                                           })
         if result.is_success:
             order.paid = True
             order.braintree_id = result.transaction.id
@@ -26,11 +29,9 @@ def payment_process(request):
         else:
             return redirect('payment:canceled')
     else:
-        client_token = braintree.ClientToken.generate()
-        context = {
-            'order': order,
-            'client_token': client_token}
-        return render(request, 'payment/process.html', context)
+        # generate token
+        client_token = gateway.client_token.generate()
+        return render(request, 'payment/process.html', {'order': order, 'client_token': client_token})
 
 
 def payment_done(request):
