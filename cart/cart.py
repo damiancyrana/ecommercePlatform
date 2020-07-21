@@ -4,7 +4,6 @@ from shop.models import Product
 
 
 class Cart(object):
-
     def __init__(self, request):
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID)
@@ -30,7 +29,6 @@ class Cart(object):
 
     def add(self, product, quantity=1, override_quantity=False):
         product_id = str(product.id)
-
         if product_id not in self.cart:
             self.cart[product_id] = {'quantity': 0, 'cost': str(product.cost)}
         if override_quantity:

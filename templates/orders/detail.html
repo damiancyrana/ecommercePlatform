@@ -1,16 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}
-    Order {{ order.id }} {{ block.super }}
-{% endblock %}
+{% block title %}Order {{ order.id }} {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
     <div class="breadcrumbs">
-        <a href="{% url "admin:index" %}">Home</a> &rsaquo;
+        <a href="{% url "admin:index" %}">Home</a>
         <a href="{% url "admin:orders_order_changelist" %}">Orders</a>
-        &rsaquo;
         <a href="{% url "admin:orders_order_change" order.id %}">Order {{ order.id }}</a>
-        &rsaquo; Detail
     </div>
 {% endblock %}
 
@@ -60,6 +56,7 @@
             </tr>
             </thead>
             <tbody>
+
             {% for item in order.items.all %}
                 <tr class="row{% cycle "1" "2" %}">
                     <td>{{ item.product.label }}</td>
@@ -68,6 +65,7 @@
                     <td class="num">${{ item.cost }}</td>
                 </tr>
             {% endfor %}
+
             <tr class="total">
                 <td colspan="3">Total</td>
                 <td class="num">${{ order.total_cost }}</td>
