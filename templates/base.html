@@ -1,34 +1,37 @@
 {% load static %}
 <!DOCTYPE html>
+
 <html>
 <head>
     <meta charset="utf-8"/>
     <title>{% block title %}My shop{% endblock %}</title>
-    <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
-<body>
-<div id="header">
-    <a href="/" class="logo">My shop</a>
-</div>
 
-<div id="subheader">
-    <div class="cart">
+<body>
+<header>
+    <a href="/" class="logo">My shop</a>
+</header>
+
+<section id="base-nav-bar">
+    <div class="cart-content">
         {% with total_items=cart|length %}
             {% if total_items > 0 %}
                 Your cart:
                 <a href="{% url "cart:cart_detail" %}">
                     {{ total_items }} items for {{ total_item|pluralize }}
-                    $ {{ cart.total_cost }}
+                    PLN {{ cart.total_cost }}
                 </a>
             {% else %}
                 Your cart is empty.
             {% endif %}
         {% endwith %}
     </div>
-</div>
-<div id="content">
+</section>
+
+<section id="content">
     {% block content %}
     {% endblock %}
-</div>
+</section>
 </body>
 </html>

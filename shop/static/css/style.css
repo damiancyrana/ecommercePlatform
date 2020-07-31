@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap');
+
+:root {
+    --main-gold-color: #b48f42;
+    --main-graphite-color: #474948;
+    --main-background-color: #ededed;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: var(--main-graphite-color);
+}
+
+a:hover {
+    color: var(--main-gold-color);
+}
+
+
+/* ---------- Base Section ---------- */
+header {
+    padding: 15px 100px;
+    font-size: 22px;
+    overflow: auto;
+}
+
+header .logo {
+    float: left;
+    color: var(--main-gold-color);
+    font-size: 25px;
+    font-weight: bolder;
+    margin-right: 10%;
+}
+
+#base-nav-bar {
+    background: var(--main-background-color);
+    color: var(--main-graphite-color);
+    padding: 15px 100px;
+    overflow: auto;
+}
+
+#base-nav-bar .cart-content {
+    float: right;
+    padding-top: 5px;
+}
+
+
+/* ---------- Content Section ---------- */
+#content {
+    padding: 0 100px;
+    overflow: hidden;
+}
+
+
+/* ---------- Navigation (sidebar) Section ---------- */
+nav {
+    width: 200px;
+    padding: 50px 40px 0 0;
+    float: left;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    list-style: none;
+    padding: 10px 20px;
+}
+
+nav ul li a {
+    display: block;
+}
+
+nav ul li.selected {
+    background: var(--main-gold-color);
+}
+
+nav ul li.selected a {
+    color: #fff;
+    font-weight: bolder;
+}
+
+
+/* ---------- Main (product) Section ---------- */
+#main {
+    float: left;
+    width: 98%;
+    margin-right: -220px;
+    overflow: hidden;
+}
+
+.product .item {
+    width: 26%;
+    padding: 10px 20px 10px 0;
+    float: left;
+    text-align: center;
+    line-height: 1.8;
+}
+
+.product .item img {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+
+/* ---------- Product Detail Section ---------- */
+.product-detail {
+    margin-top: 50px;
+    text-align:justify;
+    font-size: 14px;
+}
+
+.product-detail .price {
+    color: var(--main-gold-color);
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.product-detail img {
+    width: 50%;
+    float:left;
+    padding:0 25px 25px 0;
+    margin-right: 10px;
+}
+
+.product-detail h1 {
+    margin-bottom:0;
+    font-size: 20px;
+}
+
+.product-detail h2 {
+    margin-top:12px;
+    font-size: 14px;
+}
