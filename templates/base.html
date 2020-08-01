@@ -20,7 +20,7 @@
                 Your cart:
                 <a href="{% url "cart:cart_detail" %}">
                     {{ total_items }} items for {{ total_item|pluralize }}
-                    PLN {{ cart.total_cost }}
+                    {{ cart.total_cost }} PLN
                 </a>
             {% else %}
                 Your cart is empty.

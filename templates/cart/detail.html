@@ -2,33 +2,37 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}
-    {% trans "Your shopping cart" %}
-{% endblock %}
+
+{% block title %}{% trans "Your shopping cart" %}{% endblock %}
 
 {% block content %}
-    <h1>{% trans "Your shopping cart" %}</h1>
-    <table class="cart">
+    <h1>{% trans "Your shopping cart:" %}</h1>
+    <table class="shopping-cart">
         <thead>
-        <tr>
-            <th>{% trans "Image" %}</th>
-            <th>{% trans "Product" %}</th>
-            <th>{% trans "Quantity" %}</th>
-            <th>{% trans "Remove" %}</th>
-            <th>{% trans "Unit price" %}</th>
-            <th>{% trans "Price" %}</th>
-        </tr>
+            <tr>
+                <th>{% trans "Image" %}</th>
+                <th>{% trans "Product" %}</th>
+                <th>{% trans "Quantity" %}</th>
+                <th>{% trans "Remove" %}</th>
+                <th>{% trans "Unit price" %}</th>
+                <th>{% trans "Price" %}</th>
+            </tr>
         </thead>
+
         <tbody>
         {% for item in cart %}
             {% with product=item.product %}
                 <tr>
                     <td>
                         <a href="{{ product.absolute_url }}">
-                            <img src="{% if product.image %}{{ product.image.url }}
-                {% else %}{% static "img/no_image.png" %}{% endif %}">
+                            <img src="{% if product.image %}
+                                         {{ product.image.url }}
+                                      {% else %}
+                                         {% static "img/no_image.png" %}
+                                      {% endif %}" alt="No found image">
                         </a>
                     </td>
+
                     <td>{{ product.label }}</td>
                     <td>
                         <form action="{% url "cart:cart_add" product.id %}" method="post">
@@ -38,14 +42,16 @@
                             {% csrf_token %}
                         </form>
                     </td>
+
                     <td>
                         <form action="{% url "cart:cart_remove" product.id %}" method="post">
                             <input type="submit" value="{% trans "Remove" %}">
                             {% csrf_token %}
                         </form>
                     </td>
-                    <td class="num">${{ item.cost }}</td>
-                    <td class="num">${{ item.total_cost }}</td>
+
+                    <td class="num">{{ item.cost }} PLN</td>
+                    <td class="num">{{ item.total_cost }} PLN</td>
                 </tr>
             {% endwith %}
         {% endfor %}

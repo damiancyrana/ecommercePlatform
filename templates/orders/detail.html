@@ -2,6 +2,7 @@
 
 {% block title %}Order {{ order.id }} {{ block.super }}{% endblock %}
 
+
 {% block breadcrumbs %}
     <div class="breadcrumbs">
         <a href="{% url "admin:index" %}">Home</a>
@@ -60,15 +61,15 @@
             {% for item in order.items.all %}
                 <tr class="row{% cycle "1" "2" %}">
                     <td>{{ item.product.label }}</td>
-                    <td class="num">${{ item.price }}</td>
+                    <td class="num">{{ item.price }} PLN</td>
                     <td class="num">{{ item.quantity }}</td>
-                    <td class="num">${{ item.cost }}</td>
+                    <td class="num">{{ item.cost }} PLN</td>
                 </tr>
             {% endfor %}
 
             <tr class="total">
                 <td colspan="3">Total</td>
-                <td class="num">${{ order.total_cost }}</td>
+                <td class="num">{{ order.total_cost }} PLN</td>
             </tr>
             </tbody>
         </table>

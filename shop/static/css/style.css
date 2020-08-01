@@ -25,6 +25,22 @@ a:hover {
     color: var(--main-gold-color);
 }
 
+/* button in details and order card */
+a.button, input[type="submit"] {
+    color: #ffffff;
+    background: var(--main-gold-color);
+    border-radius:100px;
+    padding:10px 20px;
+    margin-left: 20px;
+    font-size:18px;
+    border:0;
+}
+
+a.button.light {
+    color: var(--main-graphite-color);
+    background:#ededed;
+}
+
 
 /* ---------- Base Section ---------- */
 header {
@@ -142,4 +158,100 @@ nav ul li.selected a {
 .product-detail h2 {
     margin-top:12px;
     font-size: 14px;
+}
+
+
+/* ---------- Shopping Cart ---------- */
+table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    text-align: center;
+    font-size: 16px;
+    padding: 10px;
+}
+
+table.shopping-cart {
+    margin: 20px 0 40px 0;
+}
+
+table.shopping-cart img {
+    width: 220px;
+}
+
+tbody tr:nth-child(odd) {
+    background: var(--main-background-color);
+}
+
+thead th, tbody tr.total {
+    background: var(--main-gold-color);
+    color:#fff;
+}
+
+td input[type="submit"] {
+    font-size: 18px;
+    padding: 5px 12px;
+}
+
+form p label, form p input {
+    float:left;
+    clear:both;
+}
+
+.text-right {
+    text-align:right;
+}
+
+
+/* ---------- Orders Section ---------- */
+form p label {
+    font-size: 18px;
+    padding-bottom: 5px;
+}
+
+form p input {
+    width: 330px;
+    font-size: 18px;
+    padding: 11px;
+    background: var(--main-background-color);
+    color: var(--main-graphite-color);
+    border-radius: 3px;
+    border: 0;
+    margin-bottom: 15px;
+}
+
+.order-form {
+    float:left;
+}
+
+.order-detail {
+    width: 500px;
+    float:right;
+    background: var(--main-background-color);
+    padding: 20px 40px;
+    color: var(--main-graphite-color);
+    border-bottom:8px solid var(--main-gold-color);
+}
+
+.order-detail h3 {
+    font-size: 22px;
+    color: var(--main-gold-color);
+}
+
+.order-detail ul li {
+    margin: 0;
+    padding-top: 8px;
+    font-size: 16px;
+}
+
+.order-detail p {
+    font-weight:bold;
+    float:right;
+}
+
+.order-detail span {
+    float:right;
 }
